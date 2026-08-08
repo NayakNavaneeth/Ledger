@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ledger — a paper-tape expense tracker</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <main class="tape">
+    <header class="tape__head">
+      <p class="tape__eyebrow">LEDGER No. 001</p>
+      <h1 class="tape__title">Ledger</h1>
+      <p class="tape__sub" id="today"></p>
+    </header>
+
+    <section class="tape__summary">
+      <div class="stat">
+        <span class="stat__label">In</span>
+        <span class="stat__value stat__value--in" id="totalIn">$0.00</span>
+      </div>
+      <div class="stat">
+        <span class="stat__label">Out</span>
+        <span class="stat__value stat__value--out" id="totalOut">$0.00</span>
+      </div>
+      <div class="stat stat--balance">
+        <span class="stat__label">Balance</span>
+        <span class="stat__value" id="balance">$0.00</span>
+      </div>
+    </section>
+
+    <div class="tape__tear" aria-hidden="true"></div>
+
+    <section class="entries">
+      <div class="entries__head">
+        <span>Item</span>
+        <span>Category</span>
+        <span>Amount</span>
+      </div>
+      <ul class="entries__list" id="entriesList">
+        <!-- rows injected by script.js -->
+      </ul>
+      <p class="entries__empty" id="emptyState">No entries yet. Print your first one below.</p>
+    </section>
+
+    <div class="tape__tear tape__tear--top" aria-hidden="true"></div>
+
+    <section class="form" aria-label="Add an entry">
+      <h2 class="form__title">Print a new entry</h2>
+      <form id="entryForm">
+        <div class="form__row">
+          <label for="desc">Description</label>
+          <input type="text" id="desc" placeholder="Coffee, paycheck, rent…" required>
+        </div>
+        <div class="form__row form__row--split">
+          <div>
+            <label for="amount">Amount</label>
+            <input type="number" id="amount" step="0.01" min="0.01" placeholder="0.00" required>
+          </div>
+          <div>
+            <label for="type">Type</label>
+            <select id="type">
+              <option value="out">Expense</option>
+              <option value="in">Income</option>
+            </select>
+          </div>
+        </div>
+        <div class="form__row">
+          <label for="category">Category</label>
+          <select id="category">
+            <option>Food</option>
+            <option>Transport</option>
+            <option>Housing</option>
+            <option>Fun</option>
+            <option>Health</option>
+            <option>Income</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <button type="submit" class="form__submit">Stamp it in</button>
+      </form>
+      <div class="form__actions">
+        <button id="exportBtn" class="link-btn">Export JSON</button>
+        <button id="clearBtn" class="link-btn link-btn--danger">Clear all</button>
+      </div>
+    </section>
+
+    <p class="tape__footer">— end of tape —</p>
+  </main>
+
+<script src="script.js"></script>
+</body>
+</html>
